@@ -15,7 +15,7 @@ export default function NewProject({ onAdd, onCancel }) {
         const enterDescription = description.current.value;
         const enterDueDate = dueDate.current.value;
 
-        if(
+        if (
             enterTitle.trim() === "" ||
             enterDescription.trim() === "" ||
             enterDueDate.trim() === ""
@@ -50,6 +50,6 @@ export default function NewProject({ onAdd, onCancel }) {
                 </div>
             </div>
         </>
-        
+
     )
 }
