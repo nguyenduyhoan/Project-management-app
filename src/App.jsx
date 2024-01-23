@@ -7,6 +7,7 @@ import SelectedProject from "./component/SelectedProject.jsx";
 
 
 function App() {
+  // Tạo một đối tương để quản lý project thông qua việc sử dúng useState Hook với 3 phần.
   const [projectsState, setprojectsState] = useState(
     {
       selectedProjectId: undefined,
@@ -15,15 +16,23 @@ function App() {
     }
   )
 
+  // Viết chức năng thêm Task 
+  // Thông qua việc sử dụng useState ta sẽ set lại mảng tasks
+
   function handleTask(text) {
+    //Ở đây dùng hàm setprojectsState để cập nhâp trạng thái
+    // Để cập nhập trạng thái ta phải tạo ra một đối tượng mới thông qua việc sử dụng arow function duyệt qua tất cả các phần tử
+
     setprojectsState((prevState) => {
+      // Tạo id ngẫu nhiên cho task
       const taskId = Math.random();
+      //Tạo một đối tương task mới
       const newTask = {
         text: text,
         projectId: prevState.selectedProjectId,
         id: taskId,
       }
-
+      // Trả về đối tượng project mới chứa mảng tasks mới có chứa đối tương newTask được thêm vào mảng
       return {
         ...prevState,
         tasks: [newTask, ...prevState.tasks]
@@ -32,8 +41,13 @@ function App() {
     })
   }
 
-  function handleDeleteTask() {
-
+  function handleDeleteTask(id) {
+    setprojectsState(prevState => {
+      return {
+        ...prevState,
+        tasks: prevState.tasks.filter((tasks) => tasks.id !== id),
+      }
+    })
   }
 
   function handleSelected(id) {
